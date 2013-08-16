@@ -15,11 +15,17 @@ public class Homework31 {
     public static void main(String[] args) throws UnknownHostException {
         MongoClient client = new MongoClient(new ServerAddress("QFINITIDOMAIN",27017));
 
-        DB database = client.getDB("students");
-        DBCollection collection = database.getCollection("grades");
+        DB database = client.getDB("school");
+        DBCollection collection = database.getCollection("students");
 
-        QueryBuilder builder = QueryBuilder.start("type").is("homework");
+        //QueryBuilder builder = QueryBuilder.start("type").is("homework");
 
-        DBCursor cursor = collection.find(builder.get()).sort(new BasicDBObject("student_id",1).append("score",-1));
+        DBCursor cursor = collection.find().sort(new BasicDBObject("_id",1));
+
+        while(cursor.hasNext()) {
+            DBObject cur = cursor.next();
+            System.out.println(cur.get("scores"));
+        }
+
     }
 }
