@@ -1,4 +1,4 @@
-package com.tengen;
+package com.tengen_weektwo;
 
 import com.mongodb.*;
 

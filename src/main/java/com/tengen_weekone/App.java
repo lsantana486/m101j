@@ -1,4 +1,4 @@
-package com.tengen;
+package com.tengen_weekone;
 
 /**
  * Hello world!
