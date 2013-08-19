@@ -22,6 +22,9 @@ public class RemoveHomework22 {
         QueryBuilder builder = QueryBuilder.start("type").is("homework");
 
         DBCursor cursor = collection.find(builder.get()).sort(new BasicDBObject("student_id",1).append("score",-1));
+        long tcnt = collection.count();
+        long cnt = 1;
+
         try{
             //Integer stID = 0;
             String stID = "0";
@@ -29,19 +32,29 @@ public class RemoveHomework22 {
 
             while(cursor.hasNext()) {
                 DBObject cur = cursor.next();
-                if ( cur.get("student_id").toString().equals(stID)){
+                System.out.println(tcnt);
+                if ( !(cur.get("student_id").toString().equals(stID))){
                    // collection.remove(new BasicDBObject("_id",docID));
-                    System.out.println("match");
+                    //System.out.println("match");
                     //System.out.println(stID);
                     //System.out.println(docID);
-                }else{
                     System.out.println("not match");
                     System.out.println(stID);
+                    System.out.println(cnt);
+                    collection.remove(new BasicDBObject("_id",docID));
+
+//                }else{
+//                    System.out.println("not match");
+//                    System.out.println(stID);
+//                    collection.remove(new BasicDBObject("_id",docID));
+                }
+                if (cnt==tcnt) {
                     collection.remove(new BasicDBObject("_id",docID));
                 }
                 //System.out.println(cur.get("student_id"));
                 stID = cur.get("student_id").toString();
                 docID = (ObjectId) cur.get("_id");
+                cnt++;
 
             }
         }finally{
