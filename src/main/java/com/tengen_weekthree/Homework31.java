@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class Homework31 {
     public static void main(String[] args) throws UnknownHostException {
-        MongoClient client = new MongoClient(new ServerAddress("QFINITIDOMAIN",27017));
+        MongoClient client = new MongoClient(new ServerAddress("200.26.166.241",27017));
 
         DB database = client.getDB("school");
         DBCollection collection = database.getCollection("students");
@@ -58,9 +58,9 @@ public class Homework31 {
             System.out.println(scores);
             System.out.println(scoreA);
             System.out.println(ix);
-            scores.remove(ix);
-            System.out.println(scores);
-            collection.update(new BasicDBObject("_id", cur.get("_id")), new BasicDBObject("scores",scores));
+            //scores.remove(ix);
+            //System.out.println(scores);
+            //collection.update(new BasicDBObject("_id", cur.get("_id")), new BasicDBObject("scores",scores));
         }
 
     }
