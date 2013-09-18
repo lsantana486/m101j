@@ -19,7 +19,7 @@ public class question_eigth {
 
 
         BasicDBObject animal = new BasicDBObject("animal", "monkey");
-
+        //final
         animals.insert(animal);
         System.out.println(animal);
         animal.removeField("animal");
